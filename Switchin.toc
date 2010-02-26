@@ -1,0 +1,8 @@
+﻿## Interface: 30300
+## Title: Switchin'
+## Author: Soeters
+## Version: 1
+## X-eMail: soeters@free.fr
+## Notes: Minimap switcher
+
+switcher.lua
