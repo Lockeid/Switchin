@@ -1,4 +1,5 @@
 local swt = CreateFrame("Frame", "Switchin",UIParent)
+local origH = Minimap.Hide
 swt.Pushed = false -- true: show; false: hide
 
 swt:RegisterEvent("MODIFIER_STATE_CHANGED")
@@ -28,8 +29,10 @@ end
 function swt:COMPANION_UPDATE()
 		if(IsMounted()) then
 			Minimap:Show()
+			Minimap.Hide = function() end -- No hiding
 			swt.Pushed = true
 		else
+			Minimap.Hide = origH -- Re-allow hiding
 			Minimap:Hide()
 			swt.Pushed = false
 		end
