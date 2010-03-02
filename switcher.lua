@@ -1,5 +1,5 @@
 local swt = CreateFrame("Frame", "Switchin",UIParent)
-swt.Pushed = false
+swt.Pushed = false -- true: show; false: hide
 
 swt:RegisterEvent("MODIFIER_STATE_CHANGED")
 swt:RegisterEvent("COMPANION_UPDATE")
@@ -19,18 +19,19 @@ function swt:Alpha()
 		swt.Pushed = not swt.Pushed
 		local alpha
 		if(swt.Pushed) then
-			alpha = 1
+			Minimap:Show()
 		else
-			alpha = 0
+			Minimap:Hide()
 		end
-		Minimap:SetAlpha(alpha)
 end
 
 function swt:COMPANION_UPDATE()
 		if(IsMounted()) then
-			Minimap:SetAlpha(1)
+			Minimap:Show()
+			swt.Pushed = true
 		else
-			Minimap:SetAlpha(0)
+			Minimap:Hide()
+			swt.Pushed = false
 		end
 end
 
